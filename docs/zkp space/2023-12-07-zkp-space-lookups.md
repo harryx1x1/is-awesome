@@ -3,8 +3,7 @@
 https://twitter.com/i/spaces/1gqxvQzwmbOJB
 
 ## 快速笔记（不保证准确性）
-
-郭老师
+### 郭老师
 - 看起来简单，实际不简单
 - 土耳其那边给大家讲了 landscape，前面都还算简单，到了 lasso 就有点绕了
 - 但 lasso 可能不算 lookup，但可以拿来用 lookup
@@ -18,7 +17,7 @@ https://twitter.com/i/spaces/1gqxvQzwmbOJB
 - lookup 的实现还比较少，大多在想法和实现层，实际用的时候还是用的比较老的东西
 - lookup 最近没有新的论文
 
-小熊
+### 小熊
 - sumcheck 和 GKR 属于 PIOP 这个类别
 - cq 引用了 hab22，hab22 说自己叫 logup
 - 最近看了在 decision tree 的应用，论文中的错误还挺多的，不过有三个贡献
@@ -41,7 +40,7 @@ https://twitter.com/i/spaces/1gqxvQzwmbOJB
 	- 输入（2,2）和输出（4）都会放到表中，比如放到一行
 	- 证明输入输出都在表的某一行中（lookup 到），就表示约束成立
 
-0xhhh
+### 0xhhh
 - halo2 lookup
 	- 有一个向量，希望去证明查询向量 f 是表格向量 t 中的
 - plookup
@@ -55,7 +54,7 @@ https://twitter.com/i/spaces/1gqxvQzwmbOJB
 	- 对 t 用了 spark，拆成 sub table，变成低 degree 的多项式，可以做 commit
 	- lasso 用到 GKR + spartan 的 spark，没有 get 精髓，想知道 GKR 的精髓在哪里
 
-邹老师
+### 邹老师
 - 最近没有看过 lookup
 - ingonyama 写了个文章，做了个对比
 - 很多 zkvm 项目用 logup，可以减少对 witness 承诺的开销
@@ -64,7 +63,7 @@ https://twitter.com/i/spaces/1gqxvQzwmbOJB
 	- lasso 想换方案，Justin Thaler 11 月份有个blog 谈这个事
 		- 现在是基于曲线的承诺，可能要换，换成基于 binary shield 的，改 black door 和 libra 的承诺
 
-Even
+### Even
 - 之前看过 plookup 和 flookup
 - 之前看过 lasso
 - 土耳其看了 caulk 和 caulk+
@@ -81,8 +80,7 @@ Even
 - 问题：dynamic lookup 是如何实现的
 	- PSE zkevm 里面用过，lookup table 不一定是静态的数据，还可以是动态的
 
-水滴💧-马
+### 水滴💧-马
 - 自己在研究一些 halo2 基础的协议
 - 有个问题，看 halo2 的时候，有个 look any；lookup 的请求是和 table 对齐的，但 look any 是 witness 对 witness 的，不需要证明
 	- 小熊：这是 fully zk
-
