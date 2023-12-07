@@ -8,10 +8,16 @@
 
 能保持用户习惯和工作流的事情更好。
 
-Obsidian 发布可以参考 [这里](https://github.com/jobindjohn/obsidian-publish-mkdocs) 。
+主要有两部分设置：
 
-域名设置可以参考 [这里](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain)。
+1. Obsidian 发布可以参考 [这里](https://github.com/jobindjohn/obsidian-publish-mkdocs) 。
+2. 域名设置可以参考 [这里](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain)。
 
-我的域名设置是这样的:
+域名设置有几点需要注意：
+
+1. github 这边域名的生效可能需要几个小时
+2. 记得在 docs 下面加一个 CNAME 文件，内容是自己设置的域名/子域名。要不然每次部署后，在 github 的域名设置就丢失了
+
+附：我在域名服务商 namecheap 的域名设置是这样的:
 
 ![[Pasted image 20231207220621.png]]
