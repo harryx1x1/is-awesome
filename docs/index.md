@@ -8,4 +8,4 @@
 
 2023-12-07
 
-zkp space: [[2023-12-07-lookups]]
+ZKP Twitter Space: Lookups: [[2023-12-07-lookups]]
