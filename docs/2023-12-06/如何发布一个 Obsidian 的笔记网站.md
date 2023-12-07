@@ -9,3 +9,7 @@
 Obsidian 发布可以参考 [这里](https://github.com/jobindjohn/obsidian-publish-mkdocs) 。
 
 域名设置可以参考 [这里](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-a-subdomain)。
+
+我的域名设置是这样的:
+
+![[Pasted image 20231207220621.png]]
