@@ -1,4 +1,6 @@
-# ZKP Twitter Space: Lookups
+---
+permalink: 2023-12-07-lookups
+---
 ## Twitter space 链接
 https://twitter.com/i/spaces/1gqxvQzwmbOJB
 

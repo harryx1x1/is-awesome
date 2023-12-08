@@ -1,5 +1,6 @@
-# 如何发布一个 Obsidian 的笔记网站
-
+---
+permalink: how-to-publish-obsidian-notes
+---
 昨天把 Obsidian 发布网站的事情搞定了，还买了个新的域名，上线了 https://harryx1x1.fun/
 
 这个过程还挺顺畅的，用 obsidian 写，然后发布到 github，自动部署到网站了，不需要太折腾代码的事情，简单，节省时间。另外还能继续用 obsidian 写东西，保留 md 文件和写作习惯。
