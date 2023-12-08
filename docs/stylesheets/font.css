@@ -1,0 +1,14 @@
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css');
+
+body {
+  font-family: "LXGW WenKai", sans-serif!important;
+  /* Lite version */
+  font-family: "LXGW WenKai Lite",
+  sans-serif !important;
+  /* TC version */
+  font-family: "LXGW WenKai TC",
+  sans-serif !important;
+  /* Screen version */
+  font-family: "LXGW WenKai Screen",
+  sans-serif !important;
+}
