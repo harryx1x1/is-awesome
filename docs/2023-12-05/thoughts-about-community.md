@@ -1,6 +1,4 @@
----
-permalink: thoughts-in-instanbul-of-how-to-run-community
----
+# 如何做好社区？在伊斯坦布尔 Devconnect 期间的思考
 
 ![[1.png]]
 

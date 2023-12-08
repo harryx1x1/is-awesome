@@ -2,7 +2,7 @@
 permalink: 2023-12-07-lookups
 ---
 ## Twitter space 链接
-https://twitter.com/i/spaces/1gqxvQzwmbOJB
+<https://twitter.com/i/spaces/1gqxvQzwmbOJB>
 
 ## 快速笔记（不保证准确性）
 ### 郭老师
