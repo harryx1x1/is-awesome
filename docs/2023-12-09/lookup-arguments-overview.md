@@ -79,13 +79,15 @@
 	- 好处是可以把连乘的关系转换成连加的关系
 	- 这样既支持加法同态，性能也比较好
 	- ![[Pasted image 20231209211254.png]]
-- 问题
-		- 没有解决 caulk 要解决的问题：如果表比较大怎么办
+- 问题：
+	- 没有解决 caulk 要解决的问题，prover cost 和 t 表格的大小有关
+	- 后面 CQ 可以解决这个问题
 
 ## 9. CQ
 - Prover cost:  $O(mlogm)$
 - 好处
 	- 在 proof 中没有 $G_2$ 点，这样在合约中比较好验证
+	- 解决了 logup 的问题，通过 pre-computation，让 prover cost 和 t 表格的大小无关
 - ![[Pasted image 20231209211622.png]]
 ## 10. Lasso/Jolt
 - 号称是 lookup singularity
