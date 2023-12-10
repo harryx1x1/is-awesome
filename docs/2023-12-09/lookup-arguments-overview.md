@@ -74,7 +74,7 @@
 - cost：需要引入更多的 $G_2$ points
 - ![[Pasted image 20231209210718.png]]
 
-## 8. logup [Hab22]
+## 8. Logup [Hab22]
 - 最重要的贡献：引入 logarithmic derivatives（先取对数，再求导）
 	- 好处是可以把连乘的关系转换成连加的关系
 	- 这样既支持加法同态，性能也比较好
