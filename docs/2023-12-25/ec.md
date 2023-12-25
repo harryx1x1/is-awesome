@@ -283,7 +283,7 @@ G = hP 就是我们要找的 generator（如果 G 不为 0）
 5. 计算 G = hP 
 6. 如果 G 为 0，返回步骤 4，如果 G 不为 0，则 G 就是 generator
 
-注意，此算法仅在 n 为素数时才有效，因为如果不是素数，就表明 n 有除数，就无法保证 n 是使得 nP = 0 的最小的正整数 n。
+注意，此算法仅在 n 为素数时才有效，因为如果不是素数，就表明 n 有除数，就无法保证 n 是使得 nP = 0 的最小的正整数 n。拿上面 order 为 5 的循环子群作为例子，如果找到的 n = 10，也满足 10P = 0，但是 10 不是真正的阶，而 5 才是。这里 10 不是素数，5 是素数。
 
 ## 参考
 - https://andrea.corbellini.name/2015/05/17/elliptic-curve-cryptography-a-gentle-introduction/
