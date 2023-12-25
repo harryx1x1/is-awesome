@@ -27,9 +27,11 @@ https://app.mycrypto.com/sign-message
 利用椭圆曲线的秘钥交换叫做 ECDH (Elliptic curve Diffie-Hellman)。
 
 过程：
+
 1. 首先，Alice 和 Bob 生成他们自己的私钥和公钥
 2. Alice 和 Bob 通过不安全的通道交换他们的公钥
 3. Alice 计算 $S=d_AH_B$ ，Bob 计算  $S=d_BH_A$
+
 ![[Pasted image 20231225104601.png]]
 
 S 就是获得的共享秘钥，只有他们两人知道，之后他们就可以用 S 进行加密和解密。
@@ -106,10 +108,12 @@ ECC 使用更少的内存，而且密钥生成和签名的速度要快得多。�
 
 ## 实数域上的椭圆曲线
 定义：
+
 $y^2 = x^3 + ax + b$ 
+
 其中 $4a^3 + 27b^2 \neq 0$
-再加上一个无穷远点，也可以理解为 0 点
-A + 0 = 0 + A = A
+
+再加上一个无穷远点，也可以理解为 0 点：A + 0 = 0 + A = A
 
 ![[Pasted image 20231225111045.png]]
 
@@ -124,6 +128,7 @@ A + 0 = 0 + A = A
 再比如，在数的加法下，所有整数、所有有理数，所有实数，和所有复数都分别构成一个加法群(Additive Group).
 
 如何在椭圆曲线上定义一个群：
+
 - 该群的元素是椭圆曲线的点；
 - 单位元是无穷远 0 处的点；
 - 点 P 的倒数是关于 x 轴对称的点；
@@ -138,6 +143,7 @@ A + 0 = 0 + A = A
 
 
 P + Q + R = 0 => P + Q = -R
+
 通过 P 和 Q 绘制直线。该线与椭圆曲线第三个点 R 相交。与之对称的点 −R 是 
 P+Q 的结果。
 
@@ -191,19 +197,23 @@ p 为素数。
 ![[Pasted image 20231225114121.png]]
 
 #### 加法：代数上
+
 和实数域上的公式是一样的，只不过需要 $\mod p$
 try https://andrea.corbellini.name/ecc/interactive/modk-add.html
 ### 椭圆曲线的阶(order)
+
 椭圆曲线的阶：点的数量
 
 ### 标量乘法和循环子群
 标量乘法和实数域一样：
 ![[Pasted image 20231225113316.png]]
 其中 n 为自然数。
-
   
 有限域中椭圆曲线的点相乘（标量乘法）有一个有趣的特性。选取曲线 $y^2≡x^3+2x+3$(mod 97) 和点 P=(3,6) 。现在计算 P 的所有倍数：
+
+
 ![[Pasted image 20231225115038.png]]
+
 ![[Pasted image 20231225115059.png]]
 
 这构成了只包含 5 个元素的循环子群，P 叫做 generator 或者 base point。
@@ -213,6 +223,7 @@ try https://andrea.corbellini.name/ecc/interactive/modk-add.html
 循环子群的阶（order）n，是使得 nP = 0 的最小的正整数 n。
 
 椭圆曲线算法就是在循环子群上工作的，相关的参数:
+
 ![[Pasted image 20231225115926.png]]
 **domain parameters** 一共包含上面的 6 个 tuple $(p, a, b, G, n, h)$
 
@@ -246,6 +257,7 @@ curve = EllipticCurve(
  P 的阶数通过拉格朗日定理与椭圆曲线的阶数联系起来，该定理指出子群的阶数是父群阶数的除数。换句话说，如果椭圆曲线包含 N 个点，并且其子群之一包含 n 点，则 n 是 N 的除数。
 
 找到 n 的方法：
+
 1. 使用 Schoof 算法计算椭圆曲线的阶数 N
 2. 找出 N 的所有除数
 3. 对于每个除数 n，计算 nP
@@ -263,6 +275,7 @@ curve = EllipticCurve(
 G = hP 就是我们要找的 generator（如果 G 不为 0）
 
 寻找 generator方法：
+
 1. 计算椭圆曲线的阶 N
 2. 选择子群的 order n。为了使算法正常工作，该数字必须是素数并且必须是 N 的除数。
 3. 计算  $h = N/n$ 
