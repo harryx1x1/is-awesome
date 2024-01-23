@@ -2,7 +2,7 @@
 
 本文来自于  [PSE Acceleration Program](https://github.com/privacy-scaling-explorations/acceleration-program) 的赞助支持.
 
-代码: https://github.com/luckyyang/pylookup/tree/cq_fk/src/cq
+代码: [luckyyang/pylookup](https://github.com/luckyyang/pylookup/tree/cq_fk/src/cq)
 
 这个代码是参考 CQ 的 paper 实现的, 请看 `README.md` 了解如何运行.
 
@@ -96,15 +96,15 @@ $\vec m = \{1,  2,  3,  0\}$
 
 下面我们来计算 $f(x) = (x-1)(x-2)^2(x-3)^3$ 的对数导数. 按照对数导数法的步骤, 我们先对 $f(x)$ 取对数, 然后对所得表达式求导. 下面是具体的计算步骤:
 
-1. **取对数**:
+**取对数**:
 
 $\ln(f(x)) = \ln((x-1)(x-2)(x-2)(x-3)(x-3)(x-3))$
 
-2. **展开对数**（利用对数的性质, 将乘积转换为求和）:
+**展开对数**（利用对数的性质, 将乘积转换为求和）:
 
 $\ln(f(x)) = \ln(x-1) + \ln(x-2)+ \ln(x-2)+ \ln(x-3)+ \ln(x-3) + \ln(x-3)$
 
-3. **对等式两边求导**（应用链式法则和基本导数规则）:
+**对等式两边求导**（应用链式法则和基本导数规则）:
 
 $\frac{d}{dx}\ln(f(x)) = \frac{d}{dx}(\ln(x-1) + \ln(x-2)+ \ln(x-2)+ \ln(x-3)+ \ln(x-3) + \ln(x-3))$
 
@@ -143,11 +143,13 @@ $\sum_i a_i = \sum_j b_j$
 ## 对数导数 lookup 协议
 
 通过上面的对数导数可以构建一个简单的 lookup argument:
+
 - prover 给 verifier 发送 $\vec f, \vec t, \vec m$
 - verifier 给 prover 发送随机数 $\beta$
 - prover 给 verifier 发送多个值:  $a_i = m_i / (\beta - t_i)$ 和  $b_j = 1 / (\beta - f_j)$,  其中 $i$ 和 $j$ 的取值范围为 $\vec t$ 和 $\vec f$ 中元素的个数, 即 $i \in |\vec t|, j \in |\vec f|$ 
 - verifier 做三种检查
-	- $a_i$ 值检查: $a_i * (\beta - t_i) = m_i$ 
+
+	 - $a_i$ 值检查: $a_i * (\beta - t_i) = m_i$ 
 	- $b_i$ 值检查: $b_i * (\beta - f_i) = 1$ 
 	- sum 检查: $\sum_i a_i = \sum_j b_j$ 
 
@@ -159,12 +161,14 @@ $\sum_i a_i = \sum_j b_j$
 ## 多项式构造和 pairing: 证明  $a_i$ 和 $b_i$ 
 
 为了验证:
+
 - $a_i$ 的正确性: $a_i * (\beta - t_i) = m_i$ 
 - $b_i$ 的正确性: $b_i * (\beta - f_i) = 1$ 
 
 我们通过将 $a_i$ 和 $b_i$ 分别构造成一个多项式, 然后利用多项式的性质来进行验证.
 
 所以需要:
+
 - 从  $a_i$ 构建出多项式 $A(x)$, 并验证构造的正确性
 - 从  $b_i$ 构建出多项式 $B(x)$, 并验证构造的正确性
 
@@ -221,12 +225,14 @@ $\sum_i a_i = \sum_j b_j$
 $$
 \sum_{a \in H} f(a) = t \cdot f(0)
 $$
+
 其中:
 
 - $H$ 为乘法子群: $H=\{1, \omega, \omega^2, ..., \omega^{t-2}, \omega^{t-1} \}$,  $t$ 是 $H$ 中元素的个数, $t=|H|$, $\omega$ 是单位根 
 - $f(x)$ 为一个多项式, $f(x) = f_0 + f_1x + f_2x^2 + ... + f_{t-2}x^{t-2} + f_{t-1}x^{t-1}$
 
 让我们来分解一下计算过程, 将 $a$ 取 $H$ 中的值带入 $f(x)$ 可得:
+
 $$
 \begin{align*}
 & \sum_{a \in H} f(a) = f(1) + f(\omega) + f(\omega^2) + ... + + f(\omega^t-1) \\
@@ -287,6 +293,7 @@ $\sum_{x \in H_t} A(x) = |\vec t| \cdot A(0)$
 $\sum_{x \in H_f} B(x) = |\vec f| \cdot B(0)$
 
 我们只需要验证下面的关系是否成立: 
+
 $|\vec t| \cdot A(0) \stackrel{?}{=} |\vec f| \cdot B(0)$
 
 最终, 我们通过这三个证明就完成了 CQ 要证明的 lookup.
@@ -302,4 +309,3 @@ $|\vec t| \cdot A(0) \stackrel{?}{=} |\vec f| \cdot B(0)$
 - [cq: Cached quotients for fast lookups](https://eprint.iacr.org/2022/1763)
 - [A Close Look at a Lookup Argument - Mary Maller](https://www.youtube.com/@thebiuresearchcenteronappl8783)
 - [理解 PLONK（七）：Lookup Gate](https://github.com/sec-bit/learning-zkp/blob/develop/plonk-intro-cn/7-plonk-lookup.md)
-- 
