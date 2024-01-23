@@ -304,7 +304,7 @@ $|\vec t| \cdot A(0) \stackrel{?}{=} |\vec f| \cdot B(0)$
 - Yu-Ming Hsu
 - Jing-Jie Wang
 - Paul Yu
-- Harry Liu
+
 ## 参考
 - [cq: Cached quotients for fast lookups](https://eprint.iacr.org/2022/1763)
 - [A Close Look at a Lookup Argument - Mary Maller](https://www.youtube.com/@thebiuresearchcenteronappl8783)
