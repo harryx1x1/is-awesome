@@ -2,7 +2,7 @@
 
 本文来自于  [PSE Acceleration Program](https://github.com/privacy-scaling-explorations/acceleration-program) 的赞助支持.
 
-代码: [luckyyang/pylookup](https://github.com/luckyyang/pylookup/tree/cq_fk/src/cq)
+代码: [pylookup](https://github.com/luckyyang/pylookup/tree/cq_fk/src/cq)
 
 这个代码是参考 CQ 的 paper 实现的, 请看 `README.md` 了解如何运行.
 
