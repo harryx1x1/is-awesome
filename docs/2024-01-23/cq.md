@@ -313,6 +313,7 @@ $|\vec t| \cdot A(0) \stackrel{?}{=} |\vec f| \cdot B(0)$
 - Yu-Ming Hsu
 - Jing-Jie Wang
 - Paul Yu
+- Even
 - 阿咪咪小熊
 
 ## 参考

@@ -313,6 +313,7 @@ Finally, with these three proofs($A(x), B(x), Sumcheck$), we complete the CQ loo
 - Yu-Ming Hsu
 - Jing-Jie Wang
 - Paul Yu
+- Even
 - Xiaoxiong
 ## 参考
 - [cq: Cached quotients for fast lookups](https://eprint.iacr.org/2022/1763)
