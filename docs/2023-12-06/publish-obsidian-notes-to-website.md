@@ -21,3 +21,5 @@
 附：我在域名服务商 namecheap 的域名设置是这样的:
 
 ![[Pasted image 20231207220621.png]]
+
+如何想在本地运行, 可以使用命令 `mkdocs serve`
