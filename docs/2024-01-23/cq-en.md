@@ -215,6 +215,16 @@ Check if $B(x)$ is correctly constructed:
 
 Note: The verification process in the paper has been optimized. For ease of explanation, we do not use the same verification method as in the paper, but the core principle is the same, which is KZG verification through pairing.
 
+$B(x)$ also needs further check to verify the polynomial's degree is correct, specifically by:
+- Let $N = |\vec t|, n = |\vec f|$
+- The prover sends
+	- The commitment of $B(x)$, $b = [B(x)]_1$
+	- The commitment of $X^{N−1−(n−1)}$, $r = [X^{N−1−(n−1)}]_2$
+	- The commitment of $P(x)$, $p = [P(x)]_2$, where $P(X) := B(X) * X^{N−1−(n−1)}$
+- The verifier checks: $e(b, r) = e(p, [1]_2)$
+
+The paper here makes a certain optimization, using $B_0(x)$ instead of $B(x)$, but the goal is the same: to check the degree of the polynomial.
+
 ## Sumcheck
 
 Next, we need to verify that the sum holds: $\sum_i a_i = \sum_j b_j$.
@@ -303,6 +313,7 @@ Finally, with these three proofs($A(x), B(x), Sumcheck$), we complete the CQ loo
 - Yu-Ming Hsu
 - Jing-Jie Wang
 - Paul Yu
+- Xiaoxiong
 ## 参考
 - [cq: Cached quotients for fast lookups](https://eprint.iacr.org/2022/1763)
 - [A Close Look at a Lookup Argument - Mary Maller](https://www.youtube.com/@thebiuresearchcenteronappl8783)

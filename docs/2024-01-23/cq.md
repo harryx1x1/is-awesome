@@ -216,6 +216,15 @@ $\sum_i a_i = \sum_j b_j$
 
 注意: paper 中的验证对计算过程进行了一定的优化, 我们这里为了叙述方便, 没有使用和 paper 中一样的验证方式, 不过核心原理是一样的, 都是通过 pairing 进行 KZG 验证.
 
+$B(x)$ 还需要做更进一步的检查, 检查多项式的阶数是正确的, 具体方式是:
+- 另 $N = |\vec t|, n = |\vec f|$
+- prover 发送
+	- $B(x)$ 的承诺 $b = [B(x)]_1$
+	- $X^{N−1−(n−1)}$ 的承诺 $r = [X^{N−1−(n−1)}]_2$
+	- $P(x)$ 的承诺 $p = [P(x)]_2$, $P(X) := B(X) * X^{N−1−(n−1)}$
+- verifier 验证: $e(b, r) = e(p, [1]_2)$
+
+论文在这里进行了一定的优化, 使用的是 $B_0(x)$ 而不是 $B(x)$, 不过目标是一样的, 都是为了做项式的阶数检查.
 ## Sumcheck
 
 接下来我们要验证 sum 成立: $\sum_i a_i = \sum_j b_j$ 
@@ -304,6 +313,7 @@ $|\vec t| \cdot A(0) \stackrel{?}{=} |\vec f| \cdot B(0)$
 - Yu-Ming Hsu
 - Jing-Jie Wang
 - Paul Yu
+- 阿咪咪小熊
 
 ## 参考
 - [cq: Cached quotients for fast lookups](https://eprint.iacr.org/2022/1763)
