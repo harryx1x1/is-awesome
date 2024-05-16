@@ -1,8 +1,9 @@
 # Notes about Jolt
 
-Source is: https://www.youtube.com/watch?v=DcLQ3daqnqQ
+Source is: <https://www.youtube.com/watch?v=DcLQ3daqnqQ>
 
 Notes:
+
 - jolt's new staff: replace execution with lookup(with lasso)
 - cpu tasks: 
 	- fetch, decode and execute instructions
