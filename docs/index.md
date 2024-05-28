@@ -29,3 +29,6 @@
 [Notes about Jolt](2024-05-16/jolt-notes)
 
 
+2024-05-28
+
+[How bit commitment works](2024-05-28/bit-commitment)

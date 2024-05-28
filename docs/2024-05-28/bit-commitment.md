@@ -1,4 +1,5 @@
-# Bit commitment and signature
+# How bit commitment works
+## Bit commitment and signature
 Often signature is created with this pseudo code:
 ```
 mhash = hash(message)
@@ -11,7 +12,7 @@ Means this signature commit to this message.
 
 If message == 0 or 1, we would say this signature is a bit(0/1) commitment.
 
-# Bit commitment with Lamport signature
+## Bit commitment with Lamport signature
 
 Lamport signature is a signature scheme that can be used to do bit commitment. Let's see how it works.
 
@@ -46,6 +47,7 @@ Let's make them as a table:
 | private key 1 | 1100        | 1111        | 1100        | 1011        | ... |
 | public key 0  | hash(0001)  | hash(1001)  | hash(0001)  | hash(1100)  | ... |
 | public key 1  | hash(1100)  | hash(1111)  | hash(1100)  | hash(1011)  | ... |
+
 ### Signature
 
 The logic to create the signature is as follows:
@@ -123,6 +125,7 @@ The initial state of stack and script is:
 | Stack | Script                                                                                                                 |
 | ----- | ---------------------------------------------------------------------------------------------------------------------- |
 | 1100  | OP_HASH160<br>OP_DUP<br>hash(1100)<br>OP_EQUAL<br>OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `1100 OP_HASH160`
 
 After execution:
@@ -130,6 +133,7 @@ After execution:
 | Stack      | Script                                                                                                   |
 | ---------- | -------------------------------------------------------------------------------------------------------- |
 | hash(1100) | OP_DUP<br>hash(1100)<br>OP_EQUAL<br>OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `hash(1100) OP_DUP`
 
 After execution:
@@ -137,6 +141,7 @@ After execution:
 | Stack                    | Script                                                                                         |
 | ------------------------ | ---------------------------------------------------------------------------------------------- |
 | hash(1100)<br>hash(1100) | hash(1100)<br>OP_EQUAL<br>OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `hash(1100) hash(1100) hash(1100)`
 
 After execution:
@@ -144,6 +149,7 @@ After execution:
 | Stack                                  | Script                                                                           |
 | -------------------------------------- | -------------------------------------------------------------------------------- |
 | hash(1100)<br>hash(1100)<br>hash(1100) | OP_EQUAL<br>OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `hash(1100) hash(1100) OP_EQUAL`
 
 After execution:
@@ -151,6 +157,7 @@ After execution:
 | Stack              | Script                                                               |
 | ------------------ | -------------------------------------------------------------------- |
 | True<br>hash(1100) | OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `True OP_DUP`
 
 After execution:
@@ -158,6 +165,7 @@ After execution:
 | Stack                      | Script                                                     |
 | -------------------------- | ---------------------------------------------------------- |
 | True<br>True<br>hash(1100) | OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `True True hash(1100) OP_ROT`
 
 After execution:
@@ -165,6 +173,7 @@ After execution:
 | Stack                      | Script                                           |
 | -------------------------- | ------------------------------------------------ |
 | hash(1100)<br>True<br>True | hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `hash(1100) True True hash(0001)`
 
 After execution:
@@ -172,6 +181,7 @@ After execution:
 | Stack                                    | Script                             |
 | ---------------------------------------- | ---------------------------------- |
 | hash(0001)<br>hash(1100)<br>True<br>True | OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `hash(0001) hash(1100) OP_EQUAL`
 
 After execution:
@@ -179,6 +189,7 @@ After execution:
 | Stack                 | Script                 |
 | --------------------- | ---------------------- |
 | False<br>True<br>True | OP_BOOLOR<br>OP_VERIFY |
+
 Execution: `False True OP_BOOLOR`
 
 After execution:
@@ -186,6 +197,7 @@ After execution:
 | Stack        | Script    |
 | ------------ | --------- |
 | True<br>True | OP_VERIFY |
+
 Execution: `True OP_VERIFY`
 
 After execution:
@@ -193,6 +205,7 @@ After execution:
 | Stack | Script |
 | ----- | ------ |
 | True  |        |
+
 `True` is left in the stack, since the value of False is `1`, so we can say that `1100` is the bit commitment of `1`.
 ### If 0001 is pushed to the stack
 
@@ -241,4 +254,5 @@ Since the execution process is similar, we will just put the post-execution stat
 | Stack | Script |
 | ----- | ------ |
 | False |        |
+
 `False` is left in the stack, since the value of False is `0`, so we can say that `0001` is the bit commitment of `0`.
