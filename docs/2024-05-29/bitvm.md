@@ -6,9 +6,9 @@
 
  ![[Pasted image 20240529113645.png]]
 
- 这个分享的主题是 bitvm, 让 Bitcoin 拥有更加 smarter 的 contracts.
+ 这个分享的主题是 BitVM, 让 Bitcoin 拥有更加 smarter 的 contracts.
 
-Motivation: 希望比特币可以被数十亿的人使用, 但目前还没有实现, bitvm 希望在这里有所帮助.
+Motivation: 希望比特币可以被数十亿的人使用, 但目前还没有实现, BitVM 希望在这里有所帮助.
 
 未来人们可能不会承担得起主网的交易费, 所以可能会增加区块大小以容纳更多的交易从而可以减少手续费, 但是增加区块大小会损害去中心化的程度, 因为节点的存储会增加, 验证区块的运算也会增加, 让一些配置低的机器难以运行节点, 所以区块大小也不会增加太多(比如不会增加到 GB 级别).
 
@@ -18,11 +18,11 @@ Motivation: 希望比特币可以被数十亿的人使用, 但目前还没有实
 
 ![[Pasted image 20240529115303.png]]
 
-Bitvm 实际上一个基于比特币的 hack, 技术栈如上图所述, 可以看到 Bitvm 引入了带状态的脚本(Stateful scripts), 基于这些脚本构建了 Bitvm, 基于 Bitvm 构建了 Bridge. 这个分享也是围绕这个技术栈来讲的.
+BitVM 实际上一个基于比特币的 hack, 技术栈如上图所述, 可以看到 BitVM 引入了带状态的脚本(Stateful scripts), 基于这些脚本构建了 BitVM, 基于 BitVM 构建了 Bridge. 这个分享也是围绕这个技术栈来讲的.
 
 ## Stateful scripts
 
-Bitvm 背后的核心思想是通过脚本引入状态. 有两种方式实现这个功能.
+BitVM 背后的核心思想是通过脚本引入状态. 有两种方式实现这个功能.
 
 ### 利用签名实现状态
 

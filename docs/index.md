@@ -32,3 +32,7 @@
 2024-05-28
 
 [How bit commitment works](2024-05-28/bit-commitment)
+
+2024-05-29
+
+[BitVM 介绍](2024-05-29/bitvm)
