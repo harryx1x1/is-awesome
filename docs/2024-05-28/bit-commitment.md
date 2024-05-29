@@ -256,3 +256,12 @@ Since the execution process is similar, we will just put the post-execution stat
 | False |        |
 
 `False` is left in the stack, since the value of False is `0`, so we can say that `0001` is the bit commitment of `0`.
+
+## Reference
+- https://www.youtube.com/live/VIg7BjX_lJw?si=djNaeeufQ6Pq0oIl
+- https://github.com/SGeetansh/Lamport_Signatures
+- https://docs.rs/lamport_signatures/latest/src/lamport_signatures
+- https://github.com/AtropineTears/Lamport-rs/tree/master
+- https://www.cs.umd.edu/~jkatz/crypto/f02/lectures/lecture36.pdf
+- https://en.bitcoin.it/wiki/Script
+- https://bitcoinmagazine.com/technical/script-state-from-lamport-signatures-
