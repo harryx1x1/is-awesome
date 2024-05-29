@@ -1,6 +1,6 @@
 # BitVM 介绍
 
-这篇笔记基于 Robin Linus 在 ZKProof 会议上的分享, 视频链接: https://www.youtube.com/live/VIg7BjX_lJw?si=djNaeeufQ6Pq0oIl
+这篇笔记基于 Robin Linus 在 ZKProof 会议上的分享, 视频链接: <https://www.youtube.com/live/VIg7BjX_lJw?si=djNaeeufQ6Pq0oIl>
 
 由于我也在学习, 为方便更好的理解, 结合视频我加了一些我理解的内容, 这部分内容在笔记中我不做特别说明, 如果发现错误, 那肯定是我的错误, 感谢向我指出.
 
