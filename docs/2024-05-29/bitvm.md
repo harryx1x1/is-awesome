@@ -49,6 +49,7 @@ Lamport 签名概念上非常简单, 仅利用了 hash 函数, 可以利用比�
 ![[Pasted image 20240529165434.png]]
 
 利用上图中的比特币脚本:
+
 - 如果提供数字 1 对应的签名(hash1 的原像)来执行脚本, 则签名会验证通过, 栈上会留下 1 这个值.
 - 如果提供数字 0 对应的签名(hash0 的原像)来执行脚本, 则签名会验证通过, 栈上会留下 0 这个值.
 - 如果提供其它值来执行脚本, 则脚本验证失败
@@ -95,6 +96,7 @@ Trusted Setup 阶段可以有最多 1000 个 Operator 对 TX graph 进行签名,
 ![[Pasted image 20240529182234.png]]
 
 上图显示了一个简化版本的 Bridge 的工作流程
+
 - Peg in: Alice 发送 100 BTC 到多签地址, 在 sidechain 生成 100 Wrapped BTC 发送到 Bob 地址
 - Peg out: 
 	- Bob 在 sidechain burn 100 Wrapped BTC, 希望在比特币主网收到 100 BTC
@@ -108,6 +110,7 @@ Trusted Setup 阶段可以有最多 1000 个 Operator 对 TX graph 进行签名,
 ![[Pasted image 20240529223856.png]]
 
 目前 BitVM 使用的是基于配对的 SNARK, 具体用的是 fflonk. 链上 verifier 是用脚本来实现的, 尺寸非常大, 至少有几 GB. 然而一个区块中脚本最大只能为 4 MB, 没法一次性执行整个 verifier 程序, 验证某个计算是否正确. 所以 BitVM2 采用的方式是将一个大的计算拆分成多个小的计算, 把上一步得到的结果作为下一步的参数继续执行, 这样执行到最后可以获得正确的最终结果. 这样就需要 commit 多个中间结果, 比如 1000 个. 假设我们想计算 $f(x) = y$, 但是 $f$ 函数太大没法没法直接计算, 我们把计算过程拆成 1000 分, 然后 commit 中间结果:
+
 - $f_1(x) = z_1$
 - $f_2(z_1) = z_2$
 - $f_3(z_2) = z_3$
@@ -123,6 +126,7 @@ Trusted Setup 阶段可以有最多 1000 个 Operator 对 TX graph 进行签名,
 ![[Pasted image 20240529002914.png]]
 
 上图是一个更具体一些的 Bridge 如何工作的解释:
+
 - Peg in: Alice 发送 100 BTC 到多签地址, 在 sidechain 生成 100 Wrapped BTC 发送到 Bob 地址
 - Peg out: 
 	- Bob 在 sidechain burn 100 Wrapped BTC, 希望在比特币主网收到 100 BTC
