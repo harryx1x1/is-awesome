@@ -81,7 +81,7 @@ BitVM 利用的机制是乐观的计算(Optimistic computation), 只有发生争
 
 BitVM 团队也在构建一种高级脚本语言, 可以看做是比特币脚本语言的元语言(meta language), 可以相对容易的实现更复杂功能的比特币脚本.
 
-比如可以展开循环和构建函数, 可以组合不同的 opcode. 利用这个语言实现了自己的 hash 函数. 也实现了 Lamport 签名和 Connect outputs. 还能实现更复杂的脚本, 比如复杂的 Taptree, 以及大型的 TX graph.
+比如可以展开循环和构建函数, 可以组合不同的 opcode. 利用这个语言实现了自己的 hash 函数. 也实现了 Lamport 签名和 Connector outputs. 还能实现更复杂的脚本, 比如复杂的 Taptree, 以及大型的 TX graph.
 
 ## BitVM Bridges
 

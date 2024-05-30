@@ -257,6 +257,50 @@ Since the execution process is similar, we will just put the post-execution stat
 
 `False` is left in the stack, since the value of False is `0`, so we can say that `0001` is the bit commitment of `0`.
 
+### If 1111 is pushed to the stack
+
+Since the execution process is similar, we will just put the post-execution state below.
+
+| Stack | Script                                                                                                                 |
+| ----- | ---------------------------------------------------------------------------------------------------------------------- |
+| 1111  | OP_HASH160<br>OP_DUP<br>hash(1100)<br>OP_EQUAL<br>OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
+| Stack      | Script                                                                                                   |
+| ---------- | -------------------------------------------------------------------------------------------------------- |
+| hash(1111) | OP_DUP<br>hash(1100)<br>OP_EQUAL<br>OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
+| Stack                    | Script                                                                                         |
+| ------------------------ | ---------------------------------------------------------------------------------------------- |
+| hash(1111)<br>hash(1111) | hash(1100)<br>OP_EQUAL<br>OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
+| Stack                                  | Script                                                                           |
+| -------------------------------------- | -------------------------------------------------------------------------------- |
+| hash(1100)<br>hash(1111)<br>hash(1111) | OP_EQUAL<br>OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
+| Stack                 | Script                                                               |
+| --------------------- | -------------------------------------------------------------------- |
+| False/0<br>hash(1111) | OP_DUP<br>OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
+| Stack                        | Script                                                     |
+| ---------------------------- | ---------------------------------------------------------- |
+| False<br>False<br>hash(1111) | OP_ROT<br>hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
+| Stack                        | Script                                           |
+| ---------------------------- | ------------------------------------------------ |
+| hash(1111)<br>False<br>False | hash(0001)<br>OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
+| Stack                                      | Script                             |
+| ------------------------------------------ | ---------------------------------- |
+| hash(0001)<br>hash(1111)<br>False<br>False | OP_EQUAL<br>OP_BOOLOR<br>OP_VERIFY |
+
+| Stack                   | Script                 |
+| ----------------------- | ---------------------- |
+| False<br>False<br>False | OP_BOOLOR<br>OP_VERIFY |
+
+| Stack          | Script    |
+| -------------- | --------- |
+| False<br>False | OP_VERIFY |
+Will revert and terminate due to OP_VERIFY fail to verify.
 ## Reference
 - https://www.youtube.com/live/VIg7BjX_lJw?si=djNaeeufQ6Pq0oIl
 - https://github.com/SGeetansh/Lamport_Signatures
