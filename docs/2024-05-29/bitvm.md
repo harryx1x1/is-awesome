@@ -123,8 +123,7 @@ Trusted Setup 阶段可以有最多 1000 个 Operator 对 TX graph 进行签名,
 
 因为执行一个 4 MB 的脚本就能验证某一步执行的错误, 这样就实现了可以在一个区块中验证几 GB 大小脚本代表的程序.
 
-![[Pasted image 20240529002914.png]]
-
+![[Pasted image 20240601122137.png]]
 上图是一个更具体一些的 Bridge 如何工作的解释:
 
 - Peg in: Alice 发送 100 BTC 到多签地址, 在 sidechain 生成 100 Wrapped BTC 发送到 Bob 地址
