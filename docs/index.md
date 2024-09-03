@@ -45,3 +45,8 @@
 2024-06-23
 
 [交换代数学习笔记](2024-06-23/commutative-algebra)
+
+
+2024-09-03
+
+[Roots of unity](2024-09-03/roots-of-unity)
