@@ -8,15 +8,19 @@ For $n > 0$
 ## Roots of unity in complex field
 
 For complex number, we have Euler's formula:
+
 $e^{xi} = cos(x) + isin(x)$
 
 If $x = 2 \pi$:
+
 $e^{xi} = e^{2 \pi i} = cos(2 \pi) + isin(2 \pi) = 1$
 
 If $x = 2 * 2 \pi$:
+
 $e^{xi} = e^{2 * 2 \pi i} = cos(2 * 2 \pi) + isin(2 * 2 \pi) = 1$
 
 So for any integer $k = 1, 2, 3...$, if $x = 2k \pi$:
+
 $e^{xi} = e^{2k \pi i} = cos(2k \pi) + isin(2k \pi) = 1$
 
 Use Euler's formula to get all roots of unity:
@@ -42,6 +46,7 @@ You can continue to calculate for $k > 1$ and $k > n + 1$, you will get the same
 Each root divide the circle by a degree of $2 \pi k / n$
 
 For example if $n = 4$, then the roots will be for $k = 0, 1, 2, 3$, and the degree on the circle between 2 roots will be $2 \pi /4 = \pi / 2$. Below image shows the 4 roots(z1, z2, z3, z4) of $z^4 = 1$
+
 ![[Drawing-root-of-unity-complex-n4.excalidraw|500]]
 
 If we double n to $n = 8$, then the roots will be for $k = 0, 1, 2, 3, ..., 7$, there are 8 roots. The degree on the circle between 2 roots will be $2 \pi /8 = \pi / 4$. Below image shows the 8 roots of $z^8 = 1$
@@ -62,6 +67,7 @@ $z^{16} = 1 \mod 17$
 
 
 You can verify by calculate them one by one:
+
 $$
 \begin{align*} 
 1^{16} \mod 17 &= 1 \\ 
@@ -71,6 +77,7 @@ $$
 16^{16} \mod 17 &= 1 
 \end{align*}
 $$
+
 Primitive root of unity is the smallest number that is able to generate all elements of finite field, means if $a$ is the primitive root of unity, we can get all elements of finite field by:
 
 $F_{17} = \{a^0, a^1, a^2, a^3, ..., a^{16}\} \mod 17$
