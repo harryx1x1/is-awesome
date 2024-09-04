@@ -78,20 +78,26 @@ $$
 \end{align*}
 $$
 
-Primitive root of unity is the smallest number that is able to generate all elements of finite field, means if $a$ is the primitive root of unity, we can get all elements of finite field by:
+Primitive root of unity is the smallest number that is able to generate all nonzero elements of finite field, means if $a$ is the primitive root of unity, we can get all nonzero elements of finite field by:
 
-$F_{17} = \{a^0, a^1, a^2, a^3, ..., a^{16}\} \mod 17$
+$F^{*}_{16} = \{a^0, a^1, a^2, a^3, ..., a^{16}\} \mod 17$
 
 We can try from 1 to find the primitive root of unity.
 
-If $a = 1$, then $\{1^0, 1^1, 1^2, 1^3, ..., 1^{16}\} \mod 17 = \{1\} \neq F_{17}$
+If $a = 1$:
+
+$\{1^0, 1^1, 1^2, 1^3, ..., 1^{16}\} \mod 17 = \{1\} \neq F^{*}_{16}$
 
 So 1 is not primitive root of unity.
 
-If $a = 2$, then $\{2^0, 2^1, 2^2, 2^3, ..., 2^{16} \} \mod 17 = \{2, 4, 8, 16, 15, 13, 7, 1 \} \neq F_{17}$
+If $a = 2$:
+
+$\{2^0, 2^1, 2^2, 2^3, ..., 2^{16} \} \mod 17 = \{2, 4, 8, 16, 15, 13, 7, 1 \} \neq F^{*}_{16}$
 
 So 2 is also not primitive root of unity.
 
-If $a = 3$, then $\{3^0, 3^1, 3^2, 3^3, ..., 3^{16}\} \mod 17 = \{3, 6, 9, 10, 13, 5, 15, 11, 16, 14, 8, 7, 4, 12, 2, 6 \} = F_{17}$
+If $a = 3$:
+
+$\{3^0, 3^1, 3^2, 3^3, ..., 3^{16}\} \mod 17 = \{3, 6, 9, 10, 13, 5, 15, 11, 16, 14, 8, 7, 4, 12, 2, 6 \} = F^{*}_{16}$
 
 So 3 is primitive root of unity.
