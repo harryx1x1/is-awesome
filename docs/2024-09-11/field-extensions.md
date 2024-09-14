@@ -108,6 +108,8 @@ $$
 E = \{0, 1, t, 1 + t\}
 $$
 
+![[Pasted image 20240914180750.png]]
+
 This matches the result we derived using the first method.
 
 ### Introducing More Elements
