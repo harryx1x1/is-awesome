@@ -1,103 +1,70 @@
-# Roots of unity
+# Roots of Unity: An Introduction
 
-Roots of unity is the $z$ values to make this equation satisfied:
-
-$z^n = 1$
-
-For $n > 0$
-## Roots of unity in complex field
-
-For complex number, we have Euler's formula:
-
-$e^{xi} = cos(x) + isin(x)$
-
-If $x = 2 \pi$:
-
-$e^{xi} = e^{2 \pi i} = cos(2 \pi) + isin(2 \pi) = 1$
-
-If $x = 2 * 2 \pi$:
-
-$e^{xi} = e^{2 * 2 \pi i} = cos(2 * 2 \pi) + isin(2 * 2 \pi) = 1$
-
-So for any integer $k = 1, 2, 3...$, if $x = 2k \pi$:
-
-$e^{xi} = e^{2k \pi i} = cos(2k \pi) + isin(2k \pi) = 1$
-
-Use Euler's formula to get all roots of unity:
-
-$z^n = 1$
-
-$z = 1^{1/n} = (e^{2k \pi i})^{1/n} = e^{2k \pi i / n} = cos(2k \pi / n) + isin(2k \pi / n)$
-
-There will be n roots for $k = 0, 1, 2, ..., n-1$
-
-Because for $k > n-1$, it will cycle back to  $k = 0, 1, 2, ..., n-1$, for example:
-
-If $k = 0$, $2 \pi k / n = 0$
-
-If $k = 1$, $2 \pi k / n = 2 \pi / n$
-
-If $k = n$, $2 \pi k / n = 2 \pi n / n = 2 \pi = 0$
-
-If $k = n + 1$, $2 \pi k / n = 2 \pi (n + 1) / n = 2 \pi + 2 \pi / n = 2 \pi / n$
-
-You can continue to calculate for $k > 1$ and $k > n + 1$, you will get the same result.
-
-Each root divide the circle by a degree of $2 \pi k / n$
-
-For example if $n = 4$, then the roots will be for $k = 0, 1, 2, 3$, and the degree on the circle between 2 roots will be $2 \pi /4 = \pi / 2$. Below image shows the 4 roots(z1, z2, z3, z4) of $z^4 = 1$
-
-![[Drawing-root-of-unity-complex-n4.excalidraw.png]]
-
-If we double n to $n = 8$, then the roots will be for $k = 0, 1, 2, 3, ..., 7$, there are 8 roots. The degree on the circle between 2 roots will be $2 \pi /8 = \pi / 4$. Below image shows the 8 roots of $z^8 = 1$
-
-![[Drawing-root-of-unity-complex-n8.excalidraw.png]]
-
-The formula(Euler's formula) is the same, what different is the degree, by continuing multiply the degree between 2 roots and calculate with Euler's formula, you will get all the roots.
-
-Finite field has similar properties regarding this.
-## Roots of unity in finite field
-
-In finite field, each nonzero element is root of unity. For example $F_{17} = \{0, 1, 2, 3, ..., 16\}$, $1, 2, 3, ..., 16$ are the roots of unity for equation:
-
-$z^{16} = 1 \mod 17$
-
-![[Drawing-root-of-unity-group-n16.excalidraw.png]]
-
-
-
-You can verify by calculate them one by one:
+## What is a Root of Unity?
+A **root of unity** is a complex number $z$ that satisfies the equation:
 
 $$
-\begin{align*} 
-1^{16} \mod 17 &= 1 \\ 
-2^{16} \mod 17 &= 1 \\ 
-3^{16} \mod 17 &= 1 \\
-... \\
-16^{16} \mod 17 &= 1 
-\end{align*}
+z^n = 1
 $$
 
-Primitive root of unity is the smallest number that is able to generate all nonzero elements of finite field, means if $a$ is the primitive root of unity, we can get all nonzero elements of finite field by:
+where $n > 0$. The goal is to find all $z$ values such that, when raised to the power of $n$, they equal 1.
 
-$F^{*}_{16} = \{a^0, a^1, a^2, a^3, ..., a^{16}\} \mod 17$
+## Roots of Unity in the Complex Field
+In the complex field, we can use Euler's formula to find roots of unity. Euler’s formula states:
 
-We can try from 1 to find the primitive root of unity.
+$$
+e^{ix} = \cos(x) + i\sin(x)
+$$
 
-If $a = 1$:
+For $x = 2\pi$, we get:
 
-$\{1^0, 1^1, 1^2, 1^3, ..., 1^{16}\} \mod 17 = \{1\} \neq F^{*}_{16}$
+$$
+e^{i2\pi} = \cos(2\pi) + i\sin(2\pi) = 1
+$$
 
-So 1 is not primitive root of unity.
+This means that $e^{i2\pi}$, $e^{i4\pi}$, and $e^{i6\pi}$ all equal 1, as they correspond to rotations by full circles on the complex plane.
 
-If $a = 2$:
+## Finding the $n$-th Roots of Unity
+To find all the $n$-th roots of unity, we generalize using Euler's formula. The equation $z^n = 1$ can be written as:
 
-$\{2^0, 2^1, 2^2, 2^3, ..., 2^{16} \} \mod 17 = \{2, 4, 8, 16, 15, 13, 7, 1 \} \neq F^{*}_{16}$
+$$
+z = e^{2k\pi i/n} = \cos\left(\frac{2k\pi}{n}\right) + i\sin\left(\frac{2k\pi}{n}\right)
+$$
 
-So 2 is also not primitive root of unity.
+where $k = 0, 1, 2, \dots, n-1$. There are $n$ distinct roots of unity because after $k = n-1$, the values cycle back to previously found roots.
 
-If $a = 3$:
+## Visualizing Roots on the Unit Circle
+Each root divides the unit circle into $n$ equal parts. For example:
 
-$\{3^0, 3^1, 3^2, 3^3, ..., 3^{16}\} \mod 17 = \{3, 6, 9, 10, 13, 5, 15, 11, 16, 14, 8, 7, 4, 12, 2, 6 \} = F^{*}_{16}$
+- **For $n = 4$**: The roots of $z^4 = 1$ divide the circle into four equal sections, each separated by an angle of $\pi/2$ radians.
+- **For $n = 8$**: The roots of $z^8 = 1$ divide the circle into eight equal sections, each separated by an angle of $\pi/4$ radians.
 
-So 3 is primitive root of unity.
+Here is a diagram that illustrates the positions of the roots for $n = 4$:
+
+![Root of Unity for n=4](Drawing-root-of-unity-complex-n4.excalidraw.png)
+
+Here is a diagram that illustrates the positions of the roots for $n = 8$:
+
+![Root of Unity for n=8](Drawing-root-of-unity-complex-n8.excalidraw.png)
+
+## Roots of Unity in Finite Fields
+
+The concept of roots of unity also extends to finite fields. In a finite field, every nonzero element is a root of unity. For example, consider the finite field $F_{17} = \{0, 1, 2, 3, \dots, 16\}$. In this field, the equation:
+
+$$
+z^{16} \equiv 1 \mod 17
+$$
+
+is satisfied by all nonzero elements of $F_{17}$.
+
+![Root of Unity for n=16](Drawing-root-of-unity-group-n16.excalidraw.png)
+## Primitive Root of Unity
+
+In a finite field, the **primitive root of unity** is the smallest number that can generate all nonzero elements of the field when raised to successive powers. Let’s find the primitive root in $F_{17}$:
+
+- **For $a = 1$**: The powers of 1 just give $\{1\}$, so 1 is not a primitive root.
+- **For $a = 2$**: The powers of 2 modulo 17 give $\{2, 4, 8, 16, 15, 13, 7, 1\}$, but this does not cover all the nonzero elements.
+- **For $a = 3$**: The powers of 3 modulo 17 generate all nonzero elements of $F_{17}$, so 3 is a primitive root.
+
+## Conclusion
+By using Euler’s formula in the complex field and modular arithmetic in finite fields, we can find the roots of unity and primitive roots of unity. The concept is crucial in fields like number theory, cryptography.

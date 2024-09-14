@@ -50,3 +50,8 @@
 2024-09-03
 
 [Roots of unity](2024-09-03/roots-of-unity)
+
+2024-09-11
+
+[Field Extensions](2024-09-11/field-extensions)
+
