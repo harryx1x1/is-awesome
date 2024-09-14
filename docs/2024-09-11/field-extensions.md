@@ -1,5 +1,7 @@
 # Field Extensions
 
+Thanks the inputs from Guo Yu, Kurt Pan, Wangyao, Xiaoxiong, Jade, Xiaoxue, Miranda.
+
 ![[Pasted image 20240914173210.png]]
 
 Field extensions refer to the process of adding new elements to an existing field, known as the base field. This not only expands the field but allows us to perform arithmetic operations with the new elements. For example, consider adding the element $\sqrt{2}$ to the field of rational numbers $\mathbb{Q}$. Once $\sqrt{2}$ is introduced, we can perform various calculations such as:
