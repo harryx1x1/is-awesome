@@ -1,0 +1,1639 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../2024-05-29/bitvm/">
+      
+      
+        <link rel="next" href="../../2024-06-01/bitvm-script/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.36">
+    
+    
+      
+        <title>Why There’s No ZK in Bitcoin: The Missing Pieces - Harry's Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.06209087.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/font.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#why-theres-no-zk-in-bitcoin-the-missing-pieces" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Harry&#39;s Notes" class="md-header__button md-logo" aria-label="Harry's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Harry's Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Why There’s No ZK in Bitcoin: The Missing Pieces
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Harry&#39;s Notes" class="md-nav__button md-logo" aria-label="Harry's Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Harry's Notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2023 12 05
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            2023 12 05
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2023-12-05/thoughts-about-community/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何做好社区？在伊斯坦布尔 Devconnect 期间的思考
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2023 12 06
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            2023 12 06
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2023-12-06/publish-obsidian-notes-to-website/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    如何发布一个 Obsidian 的笔记网站
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2023 12 07
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            2023 12 07
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2023-12-07/zkp-space-lookups/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Twitter space: Lookups
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2023 12 09
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            2023 12 09
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2023-12-09/lookup-arguments-overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lookup Arguments Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2023 12 25
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            2023 12 25
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2023-12-25/ec/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    椭圆曲线(Elliptic Curve)的神奇性质
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 01 06
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            2024 01 06
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-01-06/joy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    我的人生哲学: 快乐理论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 01 23
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            2024 01 23
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-01-23/cq-en/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    An Introduction to Cached Quotients Lookup Arguments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-01-23/cq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简析 Cached Quotients Lookup Arguments
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 05 16
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            2024 05 16
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-05-16/jolt-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Notes about Jolt
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 05 28
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            2024 05 28
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-05-28/bit-commitment/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    How bit commitment works
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 05 29
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            2024 05 29
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-05-29/bitvm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BitVM 介绍
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 05 30
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            2024 05 30
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Why There’s No ZK in Bitcoin: The Missing Pieces
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Why There’s No ZK in Bitcoin: The Missing Pieces
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬件要求
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 06 01
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            2024 06 01
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-06-01/bitvm-script/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BitVM Script
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 06 23
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            2024 06 23
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-06-23/commutative-algebra/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    交换代数学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 09 03
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            2024 09 03
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-09-03/Drawing-root-of-unity-complex-n4.excalidraw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawing root of unity complex n4.excalidraw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-09-03/Drawing-root-of-unity-complex-n8.excalidraw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawing root of unity complex n8.excalidraw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-09-03/Drawing-root-of-unity-group-n16.excalidraw/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Drawing root of unity group n16.excalidraw
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-09-03/roots-of-unity/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roots of Unity: An Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <label class="md-nav__link" for="__nav_16" id="__nav_16_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 09 11
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            2024 09 11
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-09-11/field-extensions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Field Extensions
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_17" >
+        
+          
+          <label class="md-nav__link" for="__nav_17" id="__nav_17_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024 09 23
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_17_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_17">
+            <span class="md-nav__icon md-icon"></span>
+            2024 09 23
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2024-09-23/fft-code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FFT Code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬件要求
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="why-theres-no-zk-in-bitcoin-the-missing-pieces">Why There’s No ZK in Bitcoin: The Missing Pieces<a class="headerlink" href="#why-theres-no-zk-in-bitcoin-the-missing-pieces" title="Permanent link">&para;</a></h1>
+<p>本文的笔记来自于 2024 年 5 月 ZKProof 会议上的分享: <a href="https://www.youtube.com/live/GrSCZmFuy7U?si=289T5_H3RGkhNTNR">https://www.youtube.com/live/GrSCZmFuy7U?si=289T5_H3RGkhNTNR</a>.</p>
+<p><img alt="Pasted image 20240530134325.png" src="../Pasted%20image%2020240530134325.png" /></p>
+<p>我将讨论比特币中的零知识和简洁证明，为什么社区现在对这些更感兴趣，未来可能会发生什么以及不太可能发生什么。首先，非常简短地介绍一下我自己，我自2018年以来一直在一家名为Blockstream的公司的研究团队工作，主要专注于签名方案和相关主题。我是比特币加密库libsecp256k1的贡献者，并且是该生态系统中各种规范的作者，例如最近的软分叉Taproot。在开始之前，快速说明一下，我今天在这里提出的大部分想法并不是我个人或Blockstream的，而是源自其他地方。</p>
+<p><img alt="Pasted image 20240530134620.png" src="../Pasted%20image%2020240530134620.png" />
+要理解比特币，我们首先需要将其视为一个社会系统，因为是人们决定他们运行什么软件，因此决定了要执行的协议规则。这个系统之所以不会变成混乱，是因为在比特币的基本原则是什么以及比特币究竟是什么、应该是什么这些问题上存在某种共识。然而，要明确这些基本原则并不容易，因为存在广泛的意见分歧，而且这些意见还在不断演变。那么，是什么社会契约维系着比特币呢？</p>
+<p><img alt="Pasted image 20240530134609.png" src="../Pasted%20image%2020240530134609.png" /></p>
+<p>"我一直在研究一个新的电子现金系统，这个系统完全是点对点的，不需要可信的第三方"。这是中本聪在密码学邮件列表上宣布比特币时的一段话。然而，比特币的设计限制了网络可以支持的最大吞吐量，因此，如果对交易空间的需求上升，就会出现竞价战，导致交易费用迅速增加。到目前为止，我们看到的以美元计的最高费用是最近一次区块减半之后，当时一个中等优先级的平均交易估计需要150美元。而在一个任意的日子，比如上周五，情况通常要平静得多，交易费用大约是1美元左右。</p>
+<p>为了解决这个问题，许多努力投入到了比特币的闪电网络的开发中。但在2016年发布的原始闪电网络论文中，已经估计它只能支持数千万用户，离覆盖地球上的每一个人还很远。</p>
+<p><img alt="Pasted image 20240530140646.png" src="../Pasted%20image%2020240530140646.png" /></p>
+<p>中本聪在邮件列表上的公告继续列出了比特币的主要特性之一，即参与者可以是匿名的。</p>
+<p>确实，参与者不需要注册照片和身份证来使用比特币，但我们知道交易泄露了大量信息，这些信息显著地帮助去匿名化用户。</p>
+<p>有一些流行的工具在某种程度上解决了这些隐私问题，但这些工具最近受到了非常令人担忧的攻击。比如，Samourai CoinJoin钱包的开发者上个月被FBI逮捕，一周后，Wasabi钱包的开发者关闭了他们的CoinJoin协调器。</p>
+<p><img alt="Pasted image 20240530141401.png" src="../Pasted%20image%2020240530141401.png" />
+因此，我们可以总结说，今天的生态系统并没有完全实现比特币的理念，技术总体上还在不断发展。因此，与普遍的看法相反，比特币社区的大多数人并不认为协议是固定不变的，有不少像我这样热衷于改进它的人。</p>
+<p>比特币协议应该如何演进呢?</p>
+<p><img alt="Pasted image 20240530142002.png" src="../Pasted%20image%2020240530142002.png" /></p>
+<p>所以，ZK 和 SNARKs 在比特币中可以做什么？非常简要地说，有很多提议来解决提到的问题，大多数不涉及 SNARKs，但它们能做什么呢？</p>
+<ol>
+<li>
+<p><strong>显著改善用户隐私</strong>：</p>
+<ul>
+<li>使用同态 Peterson 承诺对交易值和范围证明（如 Blockstream 的 Element 侧链中部署的那样）。</li>
+<li>通过可链接签名（如 Monero 中）隐藏交易图。</li>
+<li>实现真正的私密交易（如现代 Zcash 中）。</li>
+<li>
+<p><strong>提高交易吞吐量</strong>：</p>
+</li>
+<li>
+<p>例如，通过建立与其他系统的桥梁（如 2014 年提出的建议），可以显著增加交易吞吐量。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><img alt="Pasted image 20240530141909.png" src="../Pasted%20image%2020240530141909.png" /></p>
+<p>鉴于解决这些问题的技术手段已经存在了这么久，为什么它们今天还不是协议的一部分？</p>
+<p>其中一个主要原因是比特币很难改变，而这实际上是一件好事。因为如果改变比特币很容易，那么以恶意方式改变和攻击它也会很容易。</p>
+<p>这引出了一个自然的问题：我们在不改变比特币的情况下能做什么？</p>
+<p><img alt="Pasted image 20240530142037.png" src="../Pasted%20image%2020240530142037.png" /></p>
+<p>在讨论这个问题之前，我们首先需要回顾一下比特币的一些基础知识。为了将比特币转移给他人，你需要创建一个交易，并将其广播到网络上。交易的输出可以被称为实际的 coin，它们有一个附加的金额。接收者可以通过创建一个新交易来花费这些输出，这个新交易会生成新的输出，并有效地将 coin 发送给其他人。请注意，比特币中没有全局状态，特别是没有账户状态，只有交易输出，它们要么被花费，要么未被花费。</p>
+<p>除了金额外，每个输出都有一个附加的程序，这个程序用一种叫做比特币脚本的语言编写。这个程序控制谁可以花费该交易输出。如果你向程序提供正确的 witness，你就能够花费它。比特币脚本是一种基于堆栈(stack)的语言，包含一系列所谓的操作码(opcode)，一个程序由多个操作码组成, 它们基于堆栈元素计算并将计算结果放回堆栈。脚本从比特币的第一个版本开始就已经存在。</p>
+<p>例如，一个非常常见的脚本由某个公钥和检查签名的操作码组成。这个操作码确保要花费这枚coin，必须提供对给定公钥的支出交易的签名。</p>
+<p><img alt="Pasted image 20240530142049.png" src="../Pasted%20image%2020240530142049.png" /></p>
+<p>比特币脚本能做什么？</p>
+<ul>
+<li>可以重新排列堆栈，可以检查相等性，并可以根据堆栈上的值进行分支操作</li>
+<li>可以对32位数字进行有限的算术运算，即加法和减法</li>
+<li>可以哈希数据，并可以检查 ECDSA 和 Schnorr 签名</li>
+</ul>
+<p>比特币脚本不能做什么？</p>
+<ul>
+<li>没有循环、跳转、递归，它不是图灵完备的</li>
+<li>不能进行按位操作</li>
+<li>缺乏进行乘法或除法的算术操作码</li>
+<li>不能连接堆栈上的元素</li>
+<li>几乎没有检查交易数据的能力，这意味着脚本不能访问交易金额信息。这也意味着没有办法将状态从一个交易输出传递到下一个交易输出</li>
+</ul>
+<p>在比特币的早期版本中，脚本具有这些功能中的一些，但它们被中本聪禁用了。这很可能是因为发现某些操作码存在漏洞。例如，可以连接两个堆栈元素的操作码(OP_CAT)可能会被用来远程攻击比特币节点导致其崩溃，中本聪出于谨慎考虑，还禁用了其他操作码。</p>
+<p>可以 verify SNARK 吗?</p>
+<p><img alt="Pasted image 20240530142103.png" src="../Pasted%20image%2020240530142103.png" /></p>
+<p>那么，现在的问题是，你能在比特币脚本中验证 SNARK 吗？</p>
+<p>原则上，比特币脚本中的基本操作足以验证任何计算，尽管它不是图灵完备的。但是实际上，不可能实现 SNARK 验证器，因为这将需要一个超过我们可以放入比特币区块的 4 兆字节的脚本。</p>
+<p>在大型有限域上进行算术运算的实现非常昂贵。例如，BitVM 实现了两个 254 位整数的乘法，要求脚本达到 77,000 字节。</p>
+<p>没有连接堆栈元素的能力，检查 Merkle 证明非常昂贵。</p>
+<p>脚本没有抽象，本质上需要展开所有操作，比如循环。</p>
+<p><img alt="Pasted image 20240530142116.png" src="../Pasted%20image%2020240530142116.png" /></p>
+<p>为什么我们不能简单地改变比特币协议，添加更强大的操作码？</p>
+<p>正如我提到的，改变比特币很难。这个系统只有在所有参与者都遵循完全相同的协议规则时才有用，而要在新的协议规则上达成大致共识非常困难，因为没有中央决策者。任何改变都有权衡和反对，对于有些人来说，它做得太少，对于另一些人来说，它做得太多，对于还有一些人来说，它做错了事。没有办法衡量是否已经达成了大致共识，如果对更新没有共识，那么链分裂的风险就存在。</p>
+<p>当然，过去也有更新，最近的更新是 2017 年的 SegWit 和 2021 年的 Taproot。</p>
+<p><img alt="Pasted image 20240530142129.png" src="../Pasted%20image%2020240530142129.png" /></p>
+<p>Taproot 一次改变了许多协议规则，从最初的想法在邮件列表上发布到激活，花了三年半的时间。</p>
+<p>它成功的两个关键因素是：</p>
+<ul>
+<li>首先，它选择了显而易见的改进，包括清理和错误修复；</li>
+<li>其次，它没有改变现有的安全假设。例如，它允许使用 Schnorr 签名代替 ECDSA 签名，二者都是基于离散对数假设，并使用比特币实现中的相同椭圆曲线。</li>
+</ul>
+<p>与我们的讨论相关的实际变化主要有以下三点：</p>
+<ol>
+<li>Taproot 降低了最坏情况的脚本验证成本，因此能够删除先前存在的脚本限制。脚本的大小仅受区块大小（约 4 兆字节）的限制。</li>
+<li>Taproot 添加了一些升级机制。</li>
+<li>Taproot 减少了链上需要揭示的脚本。如果你可以将你的脚本写成脚本 A 或脚本 B，Taproot 允许将整个程序承诺(commit)到一个 Merkle 树中，每个脚本位于不同的叶子上。在发送交易时，你只需揭示你满足的脚本和相应的 Merkle 证明。</li>
+</ol>
+<p><img alt="Pasted image 20240530142141.png" src="../Pasted%20image%2020240530142141.png" /></p>
+<p>既然可以改变比特币，为什么不添加一个专用的操作码来验证 SNARK？</p>
+<p>添加一个 OP_SNARK 与 Taproot 有很大的不同，设计空间巨大。</p>
+<p>所有比特币节点都需要永远支持该特定的 OP_SNARK 方案，以避免用户无法使用他们的资金，这将增加巨大的技术债务。</p>
+<p>此外，OP_SNARK 也非常复杂，对比来看 Taproot 仅添加了约 1600 行代码（不包括测试）。</p>
+<p>谁来审核 OP_SNARK？如何在几乎没有人理解的情况下获得生态系统的共识？</p>
+<p>因此，今天看来这不会很快发生。</p>
+<p><img alt="Pasted image 20240530142154.png" src="../Pasted%20image%2020240530142154.png" /></p>
+<p>但是，还有其他途径可以在比特币脚本中验证 SNARK，我们可以通过添加简单的操作码使脚本更强大，使人们可以直接在脚本中编写 SNARK 验证器。</p>
+<p>这个方法的问题是脚本很难编写。因此，Blockstream 研究团队正在开发 Simplicity，这是一种旨在替代比特币脚本的语言。Simplicity 专为共识系统设计，故意设计成不图灵完备，易于静态分析和形式验证。</p>
+<p>然而，将 Simplicity 添加到比特币中将是另一个相对较大的变化。</p>
+<p><img alt="Pasted image 20240530142206.png" src="../Pasted%20image%2020240530142206.png" /></p>
+<p>现在，让我们看一个非常简单的提案，使比特币脚本更<a href="https://github.com/bitcoin/bips/blob/master/bip-0347.mediawiki#motivation">强大</a>，即 OP_CAT。</p>
+<p>谁听说过 OP_CAT？也许有 10% 的人知道。</p>
+<p>这是一个存在于比特币最初版本中的操作码，但由于可能的资源耗尽攻击被中本聪禁用。</p>
+<p>社区的提案是重新启用它，修复攻击，这其实很容易。</p>
+<p>它的功能是弹出(pop)堆栈顶部的两个元素，将它们连接起来，然后放回堆栈。</p>
+<p>听起来非常无聊，但实际上在比特币脚本中非常强大。例如，由于脚本无法访问交易金额或其他信息，但有了 OP_CAT，这将成为可能。OP_CAT 还允许检查 Merkle 证明，这在今天是不实际的，还有更多功能。每周似乎都有人提出新的使用 OP_CAT 的奇怪想法。</p>
+<p>这是否有助于在脚本中验证 SNARK？</p>
+<p>有些帮助，因为验证 Merkle 证明有助于验证基于 FRI 的 SNARK，但脚本可能仍然太大，无法放入比特币区块。</p>
+<p>那么，这个提案的状态如何？</p>
+<p>已经讨论了很多年，但似乎越来越多的人认识到交易检查(introspection)的有用性。与其他提案相比，OP_CAT 的明显优势在于它以前在比特币脚本中存在过，因此更容易在社区中达成共识。</p>
+<p>然而，OP_CAT 启用的交易检查类型也可能导致有害的矿工可提取价值(MEV: Miner Extractable Value)，这让一些人非常担忧。</p>
+<p>因此，比特币可能会有一个潜在的路径，通过启用更多简单的操作码，如 OP_CAT，最终使在脚本中验证 SNARK 成为可能。事实上，最近有一个名为“<a href="https://www.youtube.com/watch?v=gQBId8ZiZfw">Great Script Restoration</a>”的提案，启用了乘法操作码，并允许所有算术操作码以任意精度操作。</p>
+<h2 id="_1">硬件要求<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><img alt="Pasted image 20240530142224.png" src="../Pasted%20image%2020240530142224.png" /></p>
+<p>在考虑比特币的变化时，一个关键指标是运行一个验证所有比特币规则的比特币节点的资源要求。在图片中可以看到我的个人比特币节点。为了使比特币具有抗审查性和对抗拥有巨大资源的攻击者的弹性，我们希望尽可能多的人验证协议规则。如果包含某种 SNARK 验证，运行比特币节点的成本不应显著增加。</p>
+<p>目前，一个区块可以包含最多 4 兆字节的数据，预计每 10 分钟找到一个区块，几乎所有的区块数据都可以填满脚本和见证数据。区块目前最多可以包含 80,000 次签名验证操作。如果我们添加新的协议功能，不需要计入这个限制，但这表明了当前区块验证的限制。平均每个区块有 7,000 到 10,000 次签名操作，我的 2020 年英特尔 CPU 上验证一个比特币区块的第 90 百分位时间是 3.2 秒。当然，影响区块验证的因素不只是签名验证。</p>
+<p><img alt="Pasted image 20240530142237.png" src="../Pasted%20image%2020240530142237.png" /></p>
+<p>硬件钱包通常用于长期存储，它们是带有屏幕的小设备，存储密钥并生成签名。它们通常具有较弱的 CPU，例如 240 MHz 双核 CPU 和一些内存，有些更强，有些更弱，通常在签署比特币交易时响应非常迅速。</p>
+<p><img alt="Pasted image 20240530142250.png" src="../Pasted%20image%2020240530142250.png" /></p>
+<p>我做了一个小调查，询问用户能接受的签名设备生成证明的最长等待时间，许多人实际上可以接受更长的等待时间，特别是如果能带来显著的好处。</p>
+<p>我们已经花了很多时间讨论改变比特币协议，但有很多不需要协议变更的应用。我想强调一个与 BitVM 讨论相关的应用。如果你想了解其他应用，请在演讲后讨论。我们现在要看的是简洁的链状态证明，它证明给定的字节数组是有效区块链的区块哈希。</p>
+<p><img alt="Pasted image 20240530142322.png" src="../Pasted%20image%2020240530142322.png" /></p>
+<p>这允许做什么？</p>
+<p>首先，有了这种证明，就不需要对区块链中的每个区块进行昂贵的验证，目前在一台强大的台式机上追赶最新区块链需要 5 小时 30 分钟，而在树莓派大小的设备上需要几天。</p>
+<p>其次，链状态证明是与 BitVM 桥接的一个重要部分。</p>
+<p>ZeroSync 团队探索了这些证明，创建了一个更弱的“头链证明”，证明了区块头的正确性，而不涉及区块中包含的交易。它证明存在一条区块头链，并且有它声称的工作量证明。</p>
+<p>目前区块链由 840,000 个区块头组成，每个头 80 字节，区块头链需要对每个头进行双重 SHA-256 计算。</p>
+<p>ZeroSync 的实现使用 STARKs，证明成本约为 4000 美元，我的浏览器需要 3 秒钟来验证。</p>
+<p><img alt="Pasted image 20240530142345.png" src="../Pasted%20image%2020240530142345.png" /></p>
+<p>但由于没有验证交易，区块头链证明只能在假设拥有最多工作量证明的区块链是有效的前提下将比特币客户端同步到最新区块。不过，可能存在攻击者挖掘包含无效交易的区块链，例如从无到有创建 coin 的交易。创建这样的链很昂贵，不过可能可以让攻击者收益. 但有能力完全验证协议的节点会拒绝这样的链，这意味着攻击者将失去他们本来可以获得的区块奖励。</p>
+<p><img alt="Pasted image 20240530142408.png" src="../Pasted%20image%2020240530142408.png" /></p>
+<p>然而，如果在攻击中可以窃取的金额足够大，区块头链证明就不够了。如果我们想证明完整的链状态，则需要证明比特币的所有协议规则。</p>
+<p>这将需要证明超过 secp256k1 椭圆曲线上的 ECDSA 和 Schnorr 签名验证，每月约 3000 万个签名，总计约 25 亿个签名。</p>
+<p>还需要大量的 SHA-256 哈希，一个非常粗略的下限是区块链的大小，即每月约 7 GB，总计超过 650 GB，但更有可能是 2 到 3 倍。</p>
+<p>证明系统需要与比特币协议规则的每个错误完全兼容，这被认为是非常困难的，因为比特币的 C++ 代码是规范，具有大量奇怪的边界情况。有一些库封装了协议的规则，参考 <a href="https://github.com/bitcoin/bitcoin/issues/27587">libbitcoinkernel</a>。</p>
+<p><img alt="Pasted image 20240530142421.png" src="../Pasted%20image%2020240530142421.png" /></p>
+<p>现在我们来到 BitVM，这无疑是无需协议变更即可实现 SNARK 的最令人兴奋的应用。我原本计划现在概述 BitVM，但将其留给下一个演讲，Robin 会更好地解释它。简要概述一下，它使在比特币上验证任何计算成为可能，实际上能否实现有用的计算还有待证明，但似乎可能至少会看到一些有用的计算被验证。</p>
+<p>BitVM 克服了最大脚本大小限制，使用了两种技术。</p>
+<p>首先，它使用 Taproot Merkle 树的脚本。</p>
+<p>其次，主要创新是启用了一个可以跨单个脚本访问的键值存储，从而允许连接多个脚本。比特币协议不强制保证键值存储的完整性，BitVM 需要使用欺诈证明来检查恶意用户。如果证明者发布无效声明或错误使用键值存储，其他人可以广播一笔交易，表明证明者行为不当，并获得证明者的资金。</p>
+<p><img alt="Pasted image 20240530142435.png" src="../Pasted%20image%2020240530142435.png" /></p>
+<p>总结一下，比特币面临重大挑战，各种举措正在解决这些问题。</p>
+<p>然而，改变比特币依然困难，这是好事，这意味着它是去中心化的，但我们也成功地改变了比特币。</p>
+<p>许多人对 SNARK 在不远的将来解决一些挑战感到兴奋。</p>
+<p>在中期或长期内获得 SNARK 的最可行方法，也许是 BitVM 需要更多研究和开发，以证明它在实践中能做有用的事情; 以及重新启用脚本操作码，这需要证明这样做的好处远大于风险。这可能是一个有趣的挑战，调查哪些简单的操作码可以实际允许在脚本中验证 SNARK，或者 OP_CAT 或“Great Script Restoration”可以实现什么。</p>
+<p>所以，无论哪种方式，有许多令人兴奋的机会可以使这种技术变得实用，开发出创新和有用的应用。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+      
+    
+  </body>
+</html>
